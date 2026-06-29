@@ -2,6 +2,18 @@
 
 このファイルは [Keep a Changelog](https://keepachangelog.com/ja/1.1.0/) に従う。バージョン（タグ）はこのリポジトリ固有で、日付ベースの `YYYY-MMDD-NNNN` 形式を用いる（`NNNN` はその日の更新通番、当日1回目が `0001`）。最新版を上に置く。
 
+## [2026-0629-0004] — 2026-06-29
+
+`README.md` を `CLAUDE.md` の共有という目的だけに絞った。
+
+### 変更
+
+- `README.md` から同期の仕組みの説明（フロー図、構成表、Windows セットアップ、タグ採番、自動 push）を削除し、リポジトリの目的と `CLAUDE.md` の内容紹介だけに整理した。platform バッジを外し、version バッジは「updated」表記にした。
+
+### 削除
+
+- GitHub Releases は使わない方針とした（元から未作成のため削除対象なし）。
+
 ## [2026-0629-0003] — 2026-06-29
 
 `README.md` を `CLAUDE.md` の README 規約に合わせて再構成した。
