@@ -1,51 +1,42 @@
 # 変更履歴
 
-このファイルは [Keep a Changelog](https://keepachangelog.com/ja/1.1.0/) に従う。バージョン（タグ）はこのリポジトリ固有で、日付ベースの `YYYY-MMDD-NNNN` 形式を用いる（`NNNN` はその日の更新通番、当日1回目が `0001`）。最新版を上に置く。
+このファイルは [Keep a Changelog](https://keepachangelog.com/ja/1.1.0/) に従い、`CLAUDE.md` の内容変更だけを記録する。バージョンは日付ベースの `YYYY-MMDD-NNNN` 形式で、`NNNN` はその日の `CLAUDE.md` 更新通番（当日1回目が `0001`）。リポジトリのタグとは独立し、最新版を上に置く。
 
 ## [2026-0629-0004] — 2026-06-29
 
-`README.md` を `CLAUDE.md` の共有という目的だけに絞った。
+ローカルでの破壊的操作に関する安全規則を一段細かくした。
 
-### 変更
+### 追加
 
-- `README.md` から同期の仕組みの説明（フロー図、構成表、Windows セットアップ、タグ採番、自動 push）を削除し、リポジトリの目的と `CLAUDE.md` の内容紹介だけに整理した。platform バッジを外し、version バッジは「updated」表記にした。
-
-### 削除
-
-- GitHub Releases は使わない方針とした（元から未作成のため削除対象なし）。
+- ローカル破壊的操作の注意書きに、`git branch -d` はマージ済みまたは不要と確認できれば承認のうえ実行してよい旨を加えた。
 
 ## [2026-0629-0003] — 2026-06-29
 
-`README.md` を `CLAUDE.md` の README 規約に合わせて再構成した。
+冗長だった Git 関連の記述と個別の運用節を、オンデマンドで読み込むスキルへの参照に集約して再構成した。
 
 ### 変更
 
-- 冒頭に日本語・英語の言語切り替えを置き、日本語版と英語版を同等の構成（仕組み・構成・Windows セットアップ・タグ・CLAUDE.md の内容・自動 push）で全文掲載した。3ファイル構成を保つため `README.en.md` は分けず、ページ内アンカーで切り替える。
+- 「Git / Commit and push」配下の小節（コミット作法・接頭辞・頻度・push 前チェック・gh/git 安全規則・PR フロー）を、「Git — author, commits, frequency」と「Git — safety (always-on)」の2節に圧縮した。
+- Language に、人向けの日本語文では AI らしさを避ける方針と `writing-style-ja` スキルへの参照を加えた。Plan execution に `subagent-driven-development`、Verification に `verification-before-completion` への参照を補った。
+- 冒頭の Public sync note を広げ、トピック別の知見はミラー対象外のローカルスキルに置く旨を明記した。
+
+### 削除
+
+- 本文に直書きしていた License・Release / Versioning・Documentation の詳細を外し、「Conditional playbooks (load on demand)」から `releasing` / `docs-authoring` / `writing-style-ja` スキルへの索引に置き換えた。
 
 ## [2026-0629-0002] — 2026-06-29
 
-Windows でも同じ仕組みで同期できるようにし、タグの採番方式を日付ベースに切り替えた。
+公開ミラーに不要な個人情報が載らないよう、作者設定の記述を一般化した。
 
-### 追加
+### セキュリティ
 
-- Windows 版の監視・同期。PowerShell の `FileSystemWatcher` を `watch.ps1` で常駐させ、`install.ps1` でタスクスケジューラにログオン起動として登録する。`sync.ps1` は macOS 版の `sync.sh` と同等に commit / push / タグ採番を行う。
-- 日付ベースのタグ採番 `YYYY-MMDD-NNNN`（その日の更新通番）。push 成功のたびに当日のタグ数から次番号を採番・push する。
-
-### 変更
-
-- バージョン体系を SemVer から日付ベースのタグへ変更した。`README.md` の platform バッジを macOS と Windows の2つにした。
+- git の作者設定の説明から個人のメールアドレスを削除し、「メールアドレスを本ファイルにハードコードしない。マシンのグローバル設定にある作者情報を使う」という記述へ改めた。
 
 ## [2026-0629-0001] — 2026-06-29
 
-グローバル `CLAUDE.md` を公開ミラーする仕組みの初版。macOS の launchd による監視と自動 push を導入し、リポジトリに `CLAUDE.md` / `README.md` / `CHANGELOG.md` を用意した。
+全プロジェクト共通のユーザーレベル `CLAUDE.md` を公開ミラーの対象として収録した初版。
 
 ### 追加
 
-- ユーザーレベルのグローバル `CLAUDE.md` をリポジトリに取り込み、公開対象とした。
-- `CLAUDE.md` の内容と自動同期の仕組みを日本語でまとめた `README.md`。
-- macOS の launchd (`WatchPaths`) で `~/.claude/CLAUDE.md` の変更を検知し、差分があれば `main` へ自動 commit / push する同期スクリプト（リポジトリ外に配置）。
-
-### 備考
-
-- 自動ミラー用途に限り、`CLAUDE.md` の「push 前に必ず承認」「`main` への直 push 禁止」ルールを上書きしている。
-- `CLAUDE.md` を更新する際は、個人のパス構成や名前など公開に適さない情報を新たに加えないよう注意する。
+- 出力言語、コーディング完了後の出力書式、プラン実行方針、コミットと push の作法・安全規則、ライセンス、バージョニング、ドキュメント作法を収めた `CLAUDE.md`。
+- 冒頭に、本ファイルが公開リポジトリへ実時間でミラーされるため個人情報や機微情報を含めない旨の注意書き。
