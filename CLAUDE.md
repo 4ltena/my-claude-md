@@ -29,7 +29,7 @@ When moving from an approved plan to coding and asked to choose an execution met
 ## Git — author, commits, frequency
 
 - Commit **title (first line) in English**; body (line 2+) may be Japanese or English, with the reasoning included. Example: `feat(auth): add token refresh to avoid forced re-login`.
-- Use the **user's own git config** (`user.name` / `user.email`); never overwrite it with a Claude identity, and do not hard-code any email address in this file. The canonical author identity (GitHub [@4ltena](https://github.com/4ltena)) is already set in the machine's global git config — verify it is in effect before committing. Never substitute a harness-injected address.
+- Use the **user's own git config** (`user.name` / `user.email`); never overwrite it with a Claude identity, and do not hard-code any name, email, or account handle in this file. The canonical author identity is already set in the machine's global git config — verify it is in effect before committing. Never substitute a harness-injected address.
 - Always append this trailer, preceded by one blank line:
 
   ```

@@ -27,7 +27,7 @@ My claude.md
 | Language | 出力は日本語とし、コードやログをそのまま残す。 |
 | Post-coding completion output | コード完了後に要約・変更点・検証結果を実行して出力する。 |
 | Plan execution (after plan approval) | 承認された計画を実行する際は、サブエージェント駆動開発をデフォルトで適用せよ。 |
-| Git — author, commits, frequency | コミットは意味のある単位にまとめ、作者設定を確認し指定フォーマットのタイトルとトレーラーを付与する。 |
+| Git — author, commits, frequency | コミットは意味のある単位にまとめ、作者情報はユーザー設定を維持し、追加情報として Co-Authored-By を記載する。 |
 | Git — safety (always-on) | 破壊的遠端操作は禁止され、プッシュやリセットには常に承認が必要である。 |
 | Conditional playbooks (load on demand) | 条件付きプレイブックはローカルスキルに索引化される。 |
 <!-- /AUTO:sections:ja -->
