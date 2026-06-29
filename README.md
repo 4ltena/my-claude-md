@@ -1,34 +1,45 @@
 ![Version](https://img.shields.io/github/v/tag/4ltena/my-claude-md?label=version&color=blue)
-![Platform](https://img.shields.io/badge/platform-macOS%20(launchd)-black?logo=apple&logoColor=white)
+![macOS](https://img.shields.io/badge/macOS-launchd-black?logo=apple&logoColor=white)
+![Windows](https://img.shields.io/badge/Windows-Task%20Scheduler-0078D6?logo=windows&logoColor=white)
 ![Format](https://img.shields.io/badge/format-Markdown-083fa1?logo=markdown&logoColor=white)
 
 # my-claude-md
 
-ユーザーレベルのグローバル `CLAUDE.md`（全プロジェクト共通の Claude Code 指示書）を、変更が起きるたびに自動で公開ミラーするリポジトリ。`~/.claude/CLAUDE.md` を保存すると macOS の launchd が変更を検知し、このリポジトリへ commit と push を行う。
+ユーザーレベルのグローバル `CLAUDE.md`（全プロジェクト共通の Claude Code 指示書）を、変更が起きるたびに自動で公開ミラーするリポジトリ。`~/.claude/CLAUDE.md` を保存すると、macOS では launchd、Windows ではタスクスケジューラ上の FileSystemWatcher が変更を検知し、このリポジトリへ commit と push を行う。
 
-This repository mirrors the user-level global `CLAUDE.md` used across all Claude Code projects. A macOS launchd agent watches `~/.claude/CLAUDE.md` and auto-commits and pushes on every change. ([English summary](#english))
+This repository mirrors the user-level global `CLAUDE.md` used across all Claude Code projects. On macOS a launchd agent and on Windows a FileSystemWatcher (run as a logon scheduled task) watch `~/.claude/CLAUDE.md` and auto-commit and push on every change. ([English summary](#english))
 
 ## 仕組み
 
 ```mermaid
 flowchart LR
-    A["~/.claude/CLAUDE.md<br/>を編集・保存"] --> B["launchd (WatchPaths)<br/>が変更を検知"]
-    B --> C["sync.sh が起動"]
+    A["~/.claude/CLAUDE.md<br/>を編集・保存"] --> B["変更を検知<br/>macOS: launchd / Windows: FileSystemWatcher"]
+    B --> C["同期スクリプトが起動"]
     C --> D{"内容に差分あり?"}
     D -- なし --> E["何もしない"]
     D -- あり --> F["repo へコピー<br/>git commit"]
     F --> G["git push (main)"]
+    G --> H["YYYY-MMDD-NNNN<br/>タグを採番・push"]
 ```
 
-監視と同期の実体（`sync.sh` と launchd の plist）はこのリポジトリの外に置く。リポジトリが追跡するのは `CLAUDE.md` / `README.md` / `CHANGELOG.md` の3ファイルだけにする方針のため。
+監視と同期の実体（スクリプトと launchd plist / タスクスケジューラ定義）はこのリポジトリの外に置く。リポジトリが追跡するのは `CLAUDE.md` / `README.md` / `CHANGELOG.md` の3ファイルだけにする方針のため。
 
-| 構成要素 | 配置場所 |
-| --- | --- |
-| 同期スクリプト | `~/.claude/my-claude-md-sync/sync.sh` |
-| launchd 定義 | `~/Library/LaunchAgents/com.4ltena.my-claude-md-sync.plist` |
-| ローカルリポジトリ | `~/File/projects/claude/my-claude-md` |
+| 構成要素 | macOS | Windows |
+| --- | --- | --- |
+| 同期スクリプト | `~/.claude/my-claude-md-sync/sync.sh` | `%USERPROFILE%\.claude\my-claude-md-sync\windows\sync.ps1` |
+| 監視 | `~/Library/LaunchAgents/com.4ltena.my-claude-md-sync.plist` (launchd `WatchPaths`) | `watch.ps1` をタスクスケジューラでログオン起動 |
+| 登録ヘルパー | `launchctl bootstrap` | `windows\install.ps1` |
+| ローカルリポジトリ | `~/File/projects/claude/my-claude-md` | `%USERPROFILE%\File\projects\claude\my-claude-md` |
 
 `CLAUDE.md` を更新するときは、個人のパス構成や名前など公開に適さない情報を新たに加えないよう注意する。この注意書きは `CLAUDE.md` 冒頭にも記載してある。
+
+### Windows のセットアップ
+
+PowerShell で `windows\install.ps1` を一度実行すると、`watch.ps1` がログオン時に起動するタスクスケジューラのタスクとして登録される。`sync.ps1` は macOS の `sync.sh` と同じく、差分があれば commit / push / タグ採番を行う。Git の認証は `gh auth login` 済みの環境で `gh auth setup-git`（またはリポジトリ単位の credential helper）を設定しておく。
+
+### バージョン（タグ）
+
+このリポジトリのタグは SemVer ではなく日付ベースで採番する。形式は `YYYY-MMDD-NNNN`。`NNNN` はその日の更新通番で、当日1回目の更新が `0001`、2回目が `0002`、翌日また `0001` に戻る。自動同期が push に成功するたび、当日のタグ数を数えて次の番号を採番・push する。バージョンバッジはこの最新タグを表示する。
 
 ## CLAUDE.md の内容
 
@@ -50,4 +61,4 @@ flowchart LR
 
 ## <a name="english"></a>English
 
-`my-claude-md` keeps a public mirror of the user-level global `CLAUDE.md` (shared Claude Code instructions for all projects). On macOS, a launchd agent with `WatchPaths` detects edits to `~/.claude/CLAUDE.md`, then `sync.sh` copies the file into this repository and runs `git commit` / `git push` whenever the content actually differs. The watcher and its plist live outside the repository, so only `CLAUDE.md`, `README.md`, and `CHANGELOG.md` are tracked. By design the system pushes to `main` without per-change approval. See [`CLAUDE.md`](./CLAUDE.md) for the full instructions and [`CHANGELOG.md`](./CHANGELOG.md) for history.
+`my-claude-md` keeps a public mirror of the user-level global `CLAUDE.md` (shared Claude Code instructions for all projects). On macOS a launchd agent with `WatchPaths`, and on Windows a PowerShell `FileSystemWatcher` registered as a logon scheduled task, detect edits to `~/.claude/CLAUDE.md`. The sync script (`sync.sh` / `sync.ps1`) copies the file into this repository and runs `git commit` / `git push` whenever the content actually differs, then pushes a date-based tag `YYYY-MMDD-NNNN` (NNNN = that day's update count). The watchers and their definitions live outside the repository, so only `CLAUDE.md`, `README.md`, and `CHANGELOG.md` are tracked. By design the system pushes to `main` without per-change approval. See [`CLAUDE.md`](./CLAUDE.md) for the full instructions and [`CHANGELOG.md`](./CHANGELOG.md) for history.
