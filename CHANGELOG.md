@@ -1,6 +1,6 @@
 # 変更履歴
 
-このファイルは [Keep a Changelog](https://keepachangelog.com/ja/1.1.0/) に従い、`CLAUDE.md` の内容変更だけを記録する。バージョンは日付ベースの `YYYY-MMDD-NNNN` 形式で、`NNNN` はその日の `CLAUDE.md` 更新通番（当日1回目が `0001`）。リポジトリのタグとは独立し、最新版を上に置く。
+このファイルは [Keep a Changelog](https://keepachangelog.com/ja/1.1.0/) に従い、`CLAUDE.md` の内容変更だけを記録する。バージョンは日付ベースの `YYYY-MMDD-NNNN` 形式で、`NNNN` はその日の `CLAUDE.md` 更新通番（当日1回目が `0001`）。各バージョンは `CLAUDE.md` を変更したコミットに付くリポジトリの git タグと一致する（README や CHANGELOG だけの更新ではタグもこのファイルも増えない）。最新版を上に置く。
 
 ## [2026-0629-0004] — 2026-06-29
 
