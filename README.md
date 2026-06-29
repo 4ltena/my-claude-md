@@ -3,9 +3,7 @@
 
 # my-claude-md
 
-私が全プロジェクトで使っているユーザーレベルのグローバル `CLAUDE.md`（Claude Code の共通指示書）を公開・共有するためのリポジトリ。実際に使っている設定をそのまま載せ、内容は随時更新される。
-
-A repository that publishes my user-level global `CLAUDE.md` — the shared Claude Code instructions I use across all projects. It mirrors the configuration I actually use, kept up to date.
+My claude.md
 
 **日本語** | [English](#english)
 
