@@ -32,7 +32,7 @@ When moving from an approved plan to coding and asked to choose an execution met
 ### Commit messages and author
 
 - The **title (first line) must be in English**; the body (line 2+) may be Japanese or English. Write descriptions with the reasoning included. Example: `feat(auth): add token refresh to avoid forced re-login`.
-- Use the **user's own git config** (`user.name` / `user.email`); never overwrite it with a Claude identity. Canonical author: **`4ltena <altena.celestia@gmail.com>`** (GitHub: [@4ltena](https://github.com/4ltena)). Do not use a harness-injected address (e.g. `kznyan91@gmail.com`).
+- Use the **user's own git config** (`user.name` / `user.email`); never overwrite it with a Claude identity, and do not hard-code any email address in this file. The canonical author identity (GitHub [@4ltena](https://github.com/4ltena)) is already set in the machine's global git config — verify it is in effect before committing rather than restating the address here. Never substitute a harness-injected address.
 - Always append this trailer, preceded by one blank line:
 
   ```
