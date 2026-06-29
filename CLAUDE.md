@@ -1,6 +1,6 @@
 # Common instructions for all projects (User-level CLAUDE.md)
 
-> **Public sync note.** This file is mirrored in real time to a public repository (`4ltena/my-claude-md`). When editing it, do not introduce personal or sensitive details — local absolute paths, host/user names, private email addresses, API keys, tokens, or credentials. Keep instructions general so they remain safe to publish. Topic-specific playbooks live in local skills (`~/.claude/skills/`), which are not mirrored.
+> **Public sync note.** This file is mirrored in real time to a public repository. When editing it, do not introduce personal or sensitive details — local absolute paths, host/user names, private email addresses, API keys, tokens, or credentials. Keep instructions general so they remain safe to publish. Topic-specific playbooks live in local skills (`~/.claude/skills/`), which are not mirrored.
 
 ## Language
 
