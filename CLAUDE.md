@@ -49,7 +49,7 @@ Destructive, outward-facing operations cannot be undone. The machine-checkable s
 - **Never push directly to `main` / `master`.** Use a working branch and a PR; auto-push is limited to working branches.
 - **Force push is prohibited in principle.** `--force` / `--force-with-lease` only on explicit instruction, with approval. Same for rewriting pushed history (`rebase` / `commit --amend` / `reset` after a push).
 - **Approval required for:** repository visibility changes; config changes (secrets/variables, default branch, collaborators, webhooks, branch protection, `git config --global`); finalizing operations (PR/issue close, merge of a `main`/`master` PR, release publish).
-- **Local destructive operations need approval:** `git reset --hard`, `git clean -fdx`, sweeping up untracked files — confirm what will be lost first.
+- **Local destructive operations need approval:** `git reset --hard`, `git clean -fdx`, sweeping up untracked files — confirm what will be lost first. `git branch -d` is fine with approval once the branch is confirmed merged or unneeded.
 - Creation operations (open a PR, make a draft) may proceed at well-defined breakpoints. The full push→CI→merge→tag flow and merge-eligibility rules are in the `releasing` skill.
 
 ## Conditional playbooks (load on demand)
