@@ -29,8 +29,8 @@ My claude.md
 | Plan execution (after plan approval) | 承認された計画を実行する際は、サブエージェント駆動開発をデフォルトで適用せよ。 |
 | Git — author, commits, frequency | コミットは意味のある単位にまとめ、作者情報はユーザー設定を維持し、追加情報として Co-Authored-By を記載する。 |
 | Git — safety (always-on) | 破壊的遠端操作は禁止され、プッシュやリセットには常に承認が必要である。 |
-| Project overview (OVERVIEW.md) | 各プロジェクトのルートに配置される OVERVIEW.md ファイルは、主要ファイルとその役割・関連ファイルを簡潔に一覧した表を含み、この変更を反映させて更新することで毎回全体スキャンする手間を省くために用いられるべきものです。 |
-| Conditional playbooks (load on demand) | Conditional playbooks は、ライセンス選択からドキュメント記述様式に至るまで、特定の状況に適用されるトピック知識をローカルスキルとして索引する役割を果たします。 |
+| Project overview (OVERVIEW.md) | 各プロジェクトのルートに置く OVERVIEW.md は、主要ファイルとその役割・連携先を簡潔にまとめた表を持ち、表に影響する変更のたびに同時に更新して、新規セッションでの全体スキャンの手間を省く。 |
+| Conditional playbooks (load on demand) | 条件付きプレイブックであるローカルスキルは、ライセンス選択やドキュメント整備のルールから日本語文章の AI らしさを排除するチェックリストまで、状況に応じて適用されるトピック知識を格納する。 |
 <!-- /AUTO:sections:ja -->
 
 全文は [`CLAUDE.md`](./CLAUDE.md)、変更履歴は [`CHANGELOG.md`](./CHANGELOG.md) を参照。
