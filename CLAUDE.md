@@ -52,6 +52,13 @@ Destructive, outward-facing operations cannot be undone. The machine-checkable s
 - **Local destructive operations need approval:** `git reset --hard`, `git clean -fdx`, sweeping up untracked files — confirm what will be lost first. `git branch -d` is fine with approval once the branch is confirmed merged or unneeded.
 - Creation operations (open a PR, make a draft) may proceed at well-defined breakpoints. The full push→CI→merge→tag flow and merge-eligibility rules are in the `releasing` skill.
 
+## Project overview (OVERVIEW.md)
+
+- Each project keeps an `OVERVIEW.md` at its root. Read it before exploring the tree at the start of work in a project.
+- It holds a concise table: each significant file, what it does, and which files it works with.
+- Whenever you add, remove, or change a project file in a way that affects that table, update `OVERVIEW.md` in the same change.
+- Purpose: avoid re-scanning the whole project from scratch in every new session.
+
 ## Conditional playbooks (load on demand)
 
 Topic knowledge that applies only sometimes lives in local skills, indexed here:
