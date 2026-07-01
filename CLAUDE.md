@@ -56,6 +56,6 @@ Destructive, outward-facing operations cannot be undone. The machine-checkable s
 
 Topic knowledge that applies only sometimes lives in local skills, indexed here:
 
-- **`releasing`** — license choice (MIT/Apache-2.0), SemVer digit rules, annotated tag as single source of truth, dynamic version badges, release-please/release-it, CHANGELOG format, and the PR→tag flow with merge eligibility.
-- **`docs-authoring`** — README structure, shields.io badge order, mermaid diagrams, JA/EN bilingual layout and the 3000-char split rule, public/non-public docs derivation.
+- **`releasing`** — license choice (MIT/Apache-2.0), SemVer digit rules, annotated tag as single source of truth, dynamic version badges, release-please/release-it, CHANGELOG format, the PR→tag flow with merge eligibility, GitHub Release notes sync scope (修正/変更 only), and the local-app release-asset matrix with the `{project}-{X.Y.Z}-{arch}.{ext}` filename / native arch-token convention.
+- **`docs-authoring`** — README structure, shields.io badge order, mermaid diagrams, JA/EN bilingual layout and the 3000-char split rule, public/non-public docs derivation, and the English-only repository About.
 - **`writing-style-ja`** — de-AI-ify checklist for Japanese prose (the detailed form of the Language note above).
